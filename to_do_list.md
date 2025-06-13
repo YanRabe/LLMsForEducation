@@ -11,3 +11,6 @@ Things to include / do:
   - Offline Model ?
 - établir barème de qualité/validation d'une réponse à l'aide de tests pour chaque IA
 - Demander à David Brunet son diagramme des 6 utilisations de l'IA.
+
+- Tester avec allumettes par ex.
+- Tester avec IDM.
