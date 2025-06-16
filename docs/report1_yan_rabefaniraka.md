@@ -10,6 +10,7 @@ output: pdf_document
 **Remarques :** 
 
 - Fichier engendré avec:
+
     ```
     pandoc -o ../pdfs/report1_yan_rabefaniraka.pdf report1_yan_rabefaniraka.md
     ```
