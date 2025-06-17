@@ -74,3 +74,12 @@ L'objectif visé serait pour l'étudiant d'atteindre la co-cognition: Un stade o
 # Pistes d'amélioration vers la co-cognition
 
 Partie à venir, avec test sur les IAs.
+
+# Tests menés
+
+## Jeu des allumettes - Cas grand public
+
+### Écriture d'un sujet
+
+La première étape a été de réécrire simplement le sujet du jeu des allumettes. Cela pourra servir de base pour évaluer les réponses de l'IA et ainsi savoir comment mieux poser les prompts à partir du sujet directement.
+La qualité des prompts sera aussi auto-évaluée selon la grille du PPAi6, au même titre que la qualité des réponses sera évaluée selon le code obtenu.
