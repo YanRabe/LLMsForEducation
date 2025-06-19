@@ -17,12 +17,12 @@ Tests réalisés avec ChatGPT et Copilot.
 
 Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique d'évaluation de Francoise Vaillant et Pascal Mériaux. J'ai ainsi:
 
-- **Prompté** avec une requête simple sans technique de prompt et sans mobiliser mes connaissances du sujet ni de code *Python*.
+- **Prompté** avec une requête simple sans technique de prompt et sans mobiliser mes connaissances du sujet ni de *Python*.
 - Volontairement ignoré la majorité de la réponse de l'IA.
 - Évité de relire le code fourni et n'ai pas vérifié qu'il fonctionne comme attendu.
 ## ChatGPT
 <u>Interactions</u>:
-	&rarr; https://chatgpt.com/share/6852ba5d-332c-8001-a13e-b82d25338bcd
+	&rarr; [checker ce lien](https://chatgpt.com/share/6852ba5d-332c-8001-a13e-b82d25338bcd)
 
 <u>Résultat du code (ChatGPT)</u>:
 ```python
@@ -226,7 +226,7 @@ Vous avez perdu !
 ## Github Copilot (Claude 3.7 Thinking)
 
 <u>Interactions</u>:
-	&rarr; A mettre en place ! L'output est en json...
+	&rarr; [Checker ce fichier](../copilot_chats/passive_iter_1.md)
 
 <u>Résultat du code</u>:
 ```python
