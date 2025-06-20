@@ -1,4 +1,11 @@
-# Compte-rendu 1
+---
+title: Compte-rendu 1
+author:
+  - Yan Rabefaniraka, stagiaire de Meriem Ouederni et David Brunet
+date: 20 Juin 2025
+geometry: margin=2cm
+output: pdf_document
+---
 
 <u>Participants</u>:
 - Meriem Ouederni
@@ -22,6 +29,7 @@ On a soulevé l'idée d'utiliser les API LangChain et OpenRouter.
 
 **LangChain** pour pouvoir retracer les sources des réponses de l'IA et utiliser ses prompt templates.
 **OpenRouter** pour centraliser l'interface des LLMs et pouvoir en interroger plusieurs. Cela peut aussi être utile si jamais l'idée de faire un comparatif s'impose. Cependant, comme soulevé par M. Brunet, les LLMs évoluent constamment et probablement que d'ici la rentrée les comparatifs seront complètement obsolètes.
+
 ## Convention
 
 Convention envoyée à la signature. (Merci à Ben Hanson).
