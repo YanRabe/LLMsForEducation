@@ -6,7 +6,8 @@ date: 18 Juin 2025
 geometry: margin=2cm
 output: pdf_document
 ---
-Tests réalisés avec ChatGPT et Copilot.
+
+Tests réalisés avec ChatGPT et Github Copilot.
 
 # Consommation + ou - passive
 
@@ -20,6 +21,8 @@ Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique 
 - **Prompté** avec une requête simple sans technique de prompt et sans mobiliser mes connaissances du sujet ni de *Python*.
 - Volontairement ignoré la majorité de la réponse de l'IA.
 - Évité de relire le code fourni et n'ai pas vérifié qu'il fonctionne comme attendu.
+
+
 ## ChatGPT
 <u>Interactions</u>:
 	&rarr; [checker ce lien](https://chatgpt.com/share/6852ba5d-332c-8001-a13e-b82d25338bcd)
@@ -494,3 +497,223 @@ Voulez-vous rejouer (o/n)? n
 - L'IA a ajouté le choix de difficulté, qui n'est pas explicitement demandé. C'est une bonne chose.
 
 -> Même conclusion, en promptant mieux on aurait pu faire ca en un seul prompt avec exactement ce qu'on veut. 
+
+
+# Création de contenu
+
+<u>Prompt</u>:
+	- J'ai pour mission de coder en Python le jeu des allumettes. Il y a 13 allumettes dans le tas initial dans lequel le joueur puis l'ordinateur retirent tour à tour entre 1 et 3 allumettes. Le perdant est le dernier à avoir pris une allumette. On doit donc faire jouer un humain contre un ordinateur: On demande à l'humain lors de son tour le nombre d'allumettes qu'il veut retirer, tandis que la difficulté de l'ordinateur sera choisie par le joueur en début de partie. Ces difficultés seront "Naif" où il choisit au hasard entre 1 et le nombre de retrait maximum possible, "Rapide" où il retire systématiquement le maximum d'allumettes possible, "Distrait" où il essaie de retirer entre 1 à 3 allumettes jusqu'à ce que ca fonctionne, et "Expert" où il joue du mieux que possible. Pour cette dernière, en analysant les tours possibles il semblerait qu'il faut toujours réussir à laisser un nombre d'allumettes congru à 1 modulo 4 à son adversaire. Un affichage particulier est attendu. Je te le partagerai juste après. Peux-tu me faire la structure du code Python ? Je voudrai faire ca de manière fonctionnelle afin d'éviter le moins de répétition possible. Je me chargerai du gros du code, écris-moi juste la structure à compléter.
+
+
+## Émulation
+
+Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique d'évaluation de Francoise Vaillant et Pascal Mériaux. J'ai ainsi:
+
+- **Prompté** avec une requête simple sans technique de prompt et sans mobiliser mes connaissances du sujet ni de *Python*.
+- Volontairement ignoré la majorité de la réponse de l'IA.
+- Évité de relire le code fourni et n'ai pas vérifié qu'il fonctionne comme attendu.
+
+
+## ChatGPT
+
+<u>Interactions</u>:
+	&rarr; [checker ce lien](https://chatgpt.com/share/685576b8-ae64-8001-ab0b-2a81c7d9979f)
+
+<u>Résultat du code (ChatGPT)</u>:
+
+```python
+import random
+
+# ---------------------- Paramètres du jeu ----------------------
+
+NB_ALLUMETTES_INIT = 13
+RETRAIT_MIN = 1
+RETRAIT_MAX = 3
+
+# ---------------------- Fonctions de l'IA ----------------------
+
+def ia_naif(nb_allumettes):
+    """IA naive : choix aléatoire valide"""
+    pass
+
+def ia_rapide(nb_allumettes):
+    """IA rapide : retire le maximum possible"""
+    pass
+
+def ia_distrait(nb_allumettes):
+    """IA distrait : tente jusqu'à réussir un retrait valide"""
+    pass
+
+def ia_expert(nb_allumettes):
+    """IA expert : stratégie optimale pour gagner"""
+    pass
+
+# ---------------------- Fonction de sélection de l'IA ----------------------
+
+def choisir_strategie_ia(nom_strategie):
+    """Retourne la fonction IA correspondant au niveau choisi"""
+    strategies = {
+        "Naif": ia_naif,
+        "Rapide": ia_rapide,
+        "Distrait": ia_distrait,
+        "Expert": ia_expert
+    }
+    return strategies.get(nom_strategie, ia_naif)
+
+# ---------------------- Fonction de tour du joueur humain ----------------------
+
+def tour_joueur(nb_allumettes):
+    """Demande et valide le nombre d'allumettes retirées par le joueur"""
+    pass
+
+# ---------------------- Fonction d'affichage (à personnaliser) ----------------------
+
+def afficher_allumettes(nb_allumettes):
+    """Affiche les allumettes restantes d'une manière visuelle particulière"""
+    pass
+
+# ---------------------- Fonction principale de jeu ----------------------
+
+def jouer_partie():
+    nb_allumettes = NB_ALLUMETTES_INIT
+
+    # Sélection de la stratégie
+    niveau = input("Choisissez la difficulté de l'ordinateur (Naif, Rapide, Distrait, Expert) : ")
+    ia = choisir_strategie_ia(niveau)
+
+    joueur_courant = "Humain"  # Alternance "Humain" / "IA"
+
+    while nb_allumettes > 0:
+        afficher_allumettes(nb_allumettes)
+
+        if joueur_courant == "Humain":
+            retrait = tour_joueur(nb_allumettes)
+        else:
+            retrait = ia(nb_allumettes)
+            print(f"L'ordinateur retire {retrait} allumette(s).")
+
+        nb_allumettes -= retrait
+
+        # Vérifie la fin du jeu
+        if nb_allumettes == 0:
+            print(f"{joueur_courant} a perdu !")
+            break
+
+        # Changer de joueur
+        joueur_courant = "IA" if joueur_courant == "Humain" else "Humain"
+
+# ---------------------- Lancement du jeu ----------------------
+
+if __name__ == "__main__":
+    jouer_partie()
+
+```
+
+C'est un code à compléter.
+
+
+### Commentaires sur le code
+
+- À Faire
+
+## Github Copilot
+
+<u>Interactions</u>:
+	&rarr; [checker ce lien](../copilot_chats/creative_iter_2.md)
+
+<u>Résultat du code (ChatGPT)</u>:
+
+```python
+import random
+
+def initialiser_jeu():
+    """Initialise le jeu et récupère les paramètres de départ"""
+    nb_allumettes = 13
+    print("Bienvenue dans le jeu des allumettes!")
+    print("Choisissez le niveau de difficulté de l'ordinateur :")
+    print("1. Naïf")
+    print("2. Rapide")
+    print("3. Distrait")
+    print("4. Expert")
+    
+    # À compléter : code pour récupérer le choix de difficulté
+    
+    return nb_allumettes, difficulte
+
+def afficher_allumettes(nb_allumettes):
+    """Affiche l'état actuel du jeu avec les allumettes restantes"""
+    # À compléter : code pour afficher les allumettes selon le format demandé
+    pass
+
+def tour_joueur(nb_allumettes):
+    """Gère le tour du joueur humain"""
+    # À compléter : demande au joueur combien d'allumettes il veut retirer
+    # Avec vérification de la validité du choix (entre 1 et min(3, nb_allumettes))
+    pass
+
+def strategie_naif(nb_allumettes):
+    """Stratégie où l'ordinateur choisit aléatoirement entre 1 et le max possible"""
+    max_retrait = min(3, nb_allumettes)
+    return random.randint(1, max_retrait)
+
+def strategie_rapide(nb_allumettes):
+    """Stratégie où l'ordinateur retire toujours le maximum possible"""
+    return min(3, nb_allumettes)
+
+def strategie_distrait(nb_allumettes):
+    """Stratégie où l'ordinateur essaie de retirer entre 1 et 3 jusqu'à ce que ça fonctionne"""
+    # À compléter : simulation d'un ordinateur qui fait des erreurs
+    pass
+
+def strategie_expert(nb_allumettes):
+    """Stratégie optimale basée sur la théorie des jeux (modulo 4)"""
+    # À compléter : implémentation de la stratégie gagnante
+    pass
+
+def tour_ordinateur(nb_allumettes, difficulte):
+    """Gère le tour de l'ordinateur selon le niveau de difficulté choisi"""
+    if difficulte == 1:  # Naïf
+        retrait = strategie_naif(nb_allumettes)
+    elif difficulte == 2:  # Rapide
+        retrait = strategie_rapide(nb_allumettes)
+    elif difficulte == 3:  # Distrait
+        retrait = strategie_distrait(nb_allumettes)
+    else:  # Expert
+        retrait = strategie_expert(nb_allumettes)
+    
+    # À compléter : affichage du coup de l'ordinateur
+    
+    return nb_allumettes - retrait
+
+def jouer():
+    """Fonction principale qui gère la boucle de jeu"""
+    nb_allumettes, difficulte = initialiser_jeu()
+    tour = 0  # 0 pour le joueur, 1 pour l'ordinateur
+    
+    while nb_allumettes > 0:
+        afficher_allumettes(nb_allumettes)
+        
+        if tour == 0:  # Tour du joueur
+            nb_allumettes = tour_joueur(nb_allumettes)
+            if nb_allumettes == 0:
+                print("Vous avez pris la dernière allumette. Vous avez perdu!")
+                break
+        else:  # Tour de l'ordinateur
+            nb_allumettes = tour_ordinateur(nb_allumettes, difficulte)
+            if nb_allumettes == 0:
+                print("L'ordinateur a pris la dernière allumette. Vous avez gagné!")
+                break
+        
+        # Changement de tour
+        tour = 1 - tour
+    
+    # Demander si le joueur veut rejouer
+    # À compléter
+
+if __name__ == "__main__":
+    jouer()
+```
+
+### Commentaires sur le code
+
+- À Faire
