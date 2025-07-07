@@ -27,7 +27,7 @@ Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique 
 <u>Interactions</u>:
 	&rarr; [checker ce lien](https://chatgpt.com/share/6852ba5d-332c-8001-a13e-b82d25338bcd)
 
-<u>Résultat du code (ChatGPT)</u>:
+<u>Résultat du code</u>:
 ```python
 import random
 
@@ -229,7 +229,7 @@ Vous avez perdu !
 ## Github Copilot (Claude 3.7 Thinking)
 
 <u>Interactions</u>:
-	&rarr; [Checker ce fichier](../copilot_chats/passive_iter_1.md)
+	&rarr; [Checker ce fichier](https://github.com/YanRabe/LLMsForEducation/blob/main/copilot_chats/passive_iter_1.md)
 
 <u>Résultat du code</u>:
 ```python
@@ -507,11 +507,11 @@ Voulez-vous rejouer (o/n)? n
 
 ## Émulation
 
-Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique d'évaluation de Francoise Vaillant et Pascal Mériaux. J'ai ainsi:
+Pour émuler une consommation créative de l'IA, je me suis encore basé sur la rubrique d'évaluation de Francoise Vaillant et Pascal Mériaux. J'ai ainsi:
 
-- **Prompté** avec une requête simple sans technique de prompt et sans mobiliser mes connaissances du sujet ni de *Python*.
-- Volontairement ignoré la majorité de la réponse de l'IA.
-- Évité de relire le code fourni et n'ai pas vérifié qu'il fonctionne comme attendu.
+- **Prompté** avec une requête plus complète en utilisant mes connaissances du sujet et de *Python* afin de détailler ce que je veux exactement.
+- Intéragi et pris en compte les réponses de l'IA pour corriger/améliorer ce qu'elle donne.
+- Demandé à obtenir un squelette plutôt qu'un code complet.
 
 
 ## ChatGPT
@@ -519,7 +519,7 @@ Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique 
 <u>Interactions</u>:
 	&rarr; [checker ce lien](https://chatgpt.com/share/685576b8-ae64-8001-ab0b-2a81c7d9979f)
 
-<u>Résultat du code (ChatGPT)</u>:
+<u>Résultat du code</u>:
 
 ```python
 import random
@@ -612,16 +612,16 @@ if __name__ == "__main__":
 C'est un code à compléter.
 
 
-### Commentaires sur le code
+### Commentaires sur le code obtenu
 
-- À Faire
+- Avec le prompt fait, l'IA donne uniquement un code complétable qui a une structure plutôt bonne et qui inclut ce dont on a besoin. On pourrait lui faire faire l'affichage du texte comme il s'agit d'une tâche laborieuse et répétitve. En fait, il s'agit d'une sorte de raffinage qu'il nous a fait.
 
 ## Github Copilot
 
 <u>Interactions</u>:
-	&rarr; [checker ce lien](../copilot_chats/creative_iter_2.md)
+	&rarr; [checker ce lien](https://github.com/YanRabe/LLMsForEducation/blob/main/copilot_chats/creative_iter_2.md)
 
-<u>Résultat du code (ChatGPT)</u>:
+<u>Résultat du code</u>:
 
 ```python
 import random
@@ -714,6 +714,11 @@ if __name__ == "__main__":
     jouer()
 ```
 
-### Commentaires sur le code
+### Commentaires sur le code obtenu
 
-- À Faire
+- Pareillement que pour ChatGPT, la structure est ce dont on attendrait d'un raffinage, quoique beaucoup de structures de sont imbriquées. Comme d'habitude, Claude a tendance à *over-engineer* un peu, puisqu'ici il mâche même un bout du code à l'utilisateur. Dans ce cas d'utilisation spécifiquement, ce n'est peut-être pas si mal pour atteindre la suite de notre projet de **co-création**.
+
+
+# Co-création
+
+***Sur pause pour le moment.***
