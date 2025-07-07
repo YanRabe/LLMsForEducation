@@ -12,7 +12,7 @@ output: pdf_document
 - Fichier engendré avec:
 
     ```
-    pandoc -o ../pdfs/report1_yan_rabefaniraka.pdf report1_yan_rabefaniraka.md
+    pandoc --toc -o ../pdfs/report1_yan_rabefaniraka.pdf report1_yan_rabefaniraka.md
     ```
 - Par facilité d'écriture, on utilisera le masculin 'étudiant' pour qualifier les étudiant.es.
 
