@@ -1,14 +1,3 @@
-<style type="text/css">
-.tg  {border-collapse:collapse;border-spacing:0;}
-.tg td{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg th{border-color:black;border-style:solid;border-width:1px;font-family:Arial, sans-serif;font-size:14px;
-  font-weight:normal;overflow:hidden;padding:10px 5px;word-break:normal;}
-.tg .tg-sdst{border-color:inherit;font-family:"Times New Roman", Times, serif !important;text-align:left;vertical-align:middle}
-.tg .tg-c849{background-color:#00d2cb;border-color:inherit;font-family:"Times New Roman", Times, serif !important;text-align:left;
-  vertical-align:middle}
-.tg .tg-hvrg{background-color:#00d2cb;font-family:"Times New Roman", Times, serif !important;text-align:left;vertical-align:middle}
-</style>
 <table class="tg"><thead>
   <tr>
     <th class="tg-c849">Task</th>
