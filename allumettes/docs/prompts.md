@@ -721,4 +721,136 @@ if __name__ == "__main__":
 
 # Co-création
 
-***Sur pause pour le moment.***
+<u>Prompt</u>:
+
+    - Tu es un programmeur fonctionnel. Ton objectif est d'implémenter en Python le jeu des 13 allumettes.
+
+    Il s'agit d'un jeu à deux joueurs où on place un tas initial d'allumettes (13 par défaut) dans lequel chaque joueur va prendre tour à tour entre 1 et 3 allumettes. Le perdant est le joueur ayant pris la dernière allumette.
+
+    Tu codes le jeu de sorte qu'il s'agit d'un affrontement entre un joueur humain et un ordinateur. Tu pourras demander en début de partie si le joueur veut commencer ou laisser la main à l'ordinateur. Ce dernier aura 4 niveaux de difficultés qu'on nous demandera de choisir en début de partie: Naif où l'ordi prend un nombre entre 1 et le maximum possible (3 ou moins s'il reste moins de 3 allumettes), Rapide où l'ordi prend toujours le nombre maximum d'allumettes que lui permet le tas, Distrait ou il prend un nombre entre 1 et 3, et Expert où il joue de la meilleure manière possible.
+
+    On attend un affichage particulier dont tu laisseras la fonction vide pour le moment.
+
+    Aussi, tu codes avec un code facilement changeable avec des valeurs par défaut qu'on peut modifier. L'architecture de l'application doit aussi permettre d'ajouter une nouvelle difficulté sans modifier grand chose au code déjà existant.
+
+    Enfin, tu évites au maximum d'imbriquer des structures de contrôle: Si plusieurs structures s'imbriquent c'est qu'on peut en faire plusieurs fonctions.
+
+
+## Atteindre la co-créativité
+
+À finir pour vendredi
+
+
+
+
+## ChatGPT
+
+<u>Interactions</u>:
+	&rarr; maj Lien
+
+<u>Résultat du code</u>:
+
+```python
+import random
+from typing import Callable
+
+# --- Configuration par défaut ---
+DEFAULT_TOTAL_MATCHES = 13
+DEFAULT_MAX_TAKE = 3
+
+# --- Affichage (à compléter) ---
+def afficher_etat(nb_allumettes: int):
+    # Laisser cette fonction vide ou personnaliser l'affichage ici
+    pass
+
+# --- Choix du joueur humain ---
+def demander_choix_joueur(max_possible: int) -> int:
+    while True:
+        try:
+            choix = int(input(f"Combien d'allumettes voulez-vous prendre ? (1 à {max_possible}) : "))
+            if 1 <= choix <= max_possible:
+                return choix
+            print("Choix invalide. Essayez encore.")
+        except ValueError:
+            print("Entrée non valide. Entrez un nombre.")
+
+# --- IA : stratégies de jeu ---
+def strategie_naive(matches_restants: int, max_take: int) -> int:
+    return random.randint(1, min(matches_restants, max_take))
+
+def strategie_rapide(matches_restants: int, max_take: int) -> int:
+    return min(matches_restants, max_take)
+
+def strategie_distrait(matches_restants: int, max_take: int) -> int:
+    return random.choice([1, 2, 3][:min(matches_restants, max_take)])
+
+def strategie_expert(matches_restants: int, max_take: int) -> int:
+    prise = (matches_restants - 1) % (max_take + 1)
+    return prise if prise != 0 else 1
+
+# --- Dictionnaire des IA ---
+strategies: dict[str, Callable[[int, int], int]] = {
+    "naif": strategie_naive,
+    "rapide": strategie_rapide,
+    "distrait": strategie_distrait,
+    "expert": strategie_expert,
+}
+
+# --- Tour du joueur humain ---
+def tour_joueur(matches_restants: int, max_take: int) -> int:
+    return demander_choix_joueur(min(matches_restants, max_take))
+
+# --- Tour de l'ordinateur ---
+def tour_ordinateur(matches_restants: int, max_take: int, strategie: Callable[[int, int], int]) -> int:
+    return strategie(matches_restants, max_take)
+
+# --- Fonction principale du jeu ---
+def jouer_partie(total_matches: int = DEFAULT_TOTAL_MATCHES, max_take: int = DEFAULT_MAX_TAKE):
+    niveau = demander_difficulte()
+    strategie_ordi = strategies[niveau]
+
+    joueur_commence = demander_si_joueur_commence()
+
+    matches = total_matches
+    joueur_actuel = "joueur" if joueur_commence else "ordi"
+
+    while matches > 0:
+        afficher_etat(matches)
+        if joueur_actuel == "joueur":
+            prise = tour_joueur(matches, max_take)
+        else:
+            prise = tour_ordinateur(matches, max_take, strategie_ordi)
+            print(f"L'ordinateur prend {prise} allumette(s).")
+
+        matches -= prise
+        if matches == 0:
+            break
+        joueur_actuel = "ordi" if joueur_actuel == "joueur" else "joueur"
+
+    afficher_etat(matches)
+    perdant = "Vous avez perdu !" if joueur_actuel == "joueur" else "L'ordinateur a perdu !"
+    print(perdant)
+
+# --- Choix des options en début de partie ---
+def demander_difficulte() -> str:
+    print("Choisissez un niveau de difficulté :")
+    for i, nom in enumerate(strategies):
+        print(f"{i + 1}. {nom.capitalize()}")
+
+    while True:
+        try:
+            choix = int(input("Entrez le numéro du niveau : "))
+            if 1 <= choix <= len(strategies):
+                return list(strategies.keys())[choix - 1]
+        except ValueError:
+            pass
+        print("Choix invalide.")
+
+def demander_si_joueur_commence() -> bool:
+    choix = input("Souhaitez-vous commencer ? (o/n) : ").lower()
+    return choix.startswith("o")
+
+# --- Lancer le jeu ---
+if __name__ == "__main__":
+    jouer_partie()
+```
