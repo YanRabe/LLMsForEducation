@@ -6,3 +6,4 @@
 
 [Confirmation bias](https://mediate.com/ai-and-confirmation-bias/)
 
+[GenAI environmental impact(french)](https://drane-versailles.region-academique-idf.fr/spip.php?article1167&lang=fr)
