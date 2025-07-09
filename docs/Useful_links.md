@@ -4,3 +4,5 @@
 
 [Bias in LLMs](https://arxiv.org/html/2411.10915v1#S2)
 
+[Confirmation bias](https://mediate.com/ai-and-confirmation-bias/)
+
