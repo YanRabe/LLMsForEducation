@@ -716,7 +716,7 @@ if __name__ == "__main__":
 
 ### Commentaires sur le code obtenu
 
-- Pareillement que pour ChatGPT, la structure est ce dont on attendrait d'un raffinage, quoique beaucoup de structures de sont imbriquées. Comme d'habitude, Claude a tendance à *over-engineer* un peu, puisqu'ici il mâche même un bout du code à l'utilisateur. Dans ce cas d'utilisation spécifiquement, ce n'est peut-être pas si mal pour atteindre la suite de notre projet de **co-création**.
+- Pareillement que pour ChatGPT, la structure est ce dont on attendrait d'un raffinage, quoique beaucoup de structures de contrôle sont imbriquées. Comme d'habitude, Claude a tendance à *over-engineer* un peu, puisqu'ici il mâche même un bout du code à l'utilisateur. Dans ce cas d'utilisation spécifiquement, ce n'est peut-être pas si mal pour atteindre la suite de notre projet de **co-création**.
 
 
 # Co-création
