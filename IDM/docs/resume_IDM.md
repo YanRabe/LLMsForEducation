@@ -12,7 +12,7 @@ output: pdf_document
 - Fichier engendré avec:
 
     ```
-    pandoc --toc -o ../pdfs/report1_yan_rabefaniraka.pdf report1_yan_rabefaniraka.md
+    pandoc --toc -o ../../pdfs/IDM_summary.pdf resume_IDM.md
     ```
 
 # Installation des outils
