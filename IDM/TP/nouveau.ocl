@@ -1,0 +1,8 @@
+import 'SimplePDL.ecore'
+
+package simplepdl
+
+context Process
+inv uniqueName('')
+
+endpackage
