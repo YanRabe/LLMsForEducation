@@ -6,6 +6,8 @@ date: 17 Juin 2025
 geometry: margin=2cm
 output: pdf_document
 ---
+
+---
 L'objectif de ce projet et d'implémenter le jeu des allumettes, en *Python*.
 
 Il s'agit d'un jeu à deux joueurs, où on place un tas initial d'allumettes (par défaut 13) dans lequel chaque joueur va tour à tour prendre entre 1 et 3 allumettes. Le perdant est le joueur ayant pris la dernière allumette.
