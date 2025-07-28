@@ -12,7 +12,8 @@ Tests réalisés avec ChatGPT et Github Copilot.
 # Consommation + ou - passive
 
 <u>Prompt passif</u>:
-	- Code moi le jeu des 13 allumettes en Python. Un joueur peut jouer contre un ordinateur.
+
+- Code moi le jeu des 13 allumettes en Python. Un joueur peut jouer contre un ordinateur.
 
 ## Émulation de la consommation passive
 
@@ -223,7 +224,7 @@ Vous avez perdu !
 - À noter tout de même que l'affichage est **exactement** comme attendu excepté les allumettes et la fin où il affiche 3 lignes vides car la fonction d'affichage est encore appelée.
 - Il n'a pas du tout compris ce qu'on demande pour la stratégie "Distrait".
 
--> Globalement, tous ces problèmes sont évitables en promptant mieux, en connaissant mieux le sujet et en relisant l'*output* pour pouvoir interagir correctement avec l'IA en revenant sur les erreurs/manquements.
+&rarr; Globalement, tous ces problèmes sont évitables en promptant mieux, en connaissant mieux le sujet et en relisant l'*output* pour pouvoir interagir correctement avec l'IA en revenant sur les erreurs/manquements.
 
 
 ## Github Copilot (Claude 3.7 Thinking)
@@ -496,13 +497,14 @@ Voulez-vous rejouer (o/n)? n
 - Cependant, il y a une sensation d'*over-engineering*-- qui est certainement inhérent à Claude Sonnet 3.7-- avec des répétitions qui ne sont pas nécessaires par endroits.
 - L'IA a ajouté le choix de difficulté, qui n'est pas explicitement demandé. C'est une bonne chose.
 
--> Même conclusion, en promptant mieux on aurait pu faire ca en un seul prompt avec exactement ce qu'on veut. 
+&rarr; Même conclusion, en promptant mieux on aurait pu faire ca en un seul prompt avec exactement ce qu'on veut. 
 
 
 # Création de contenu
 
 <u>Prompt</u>:
-	- J'ai pour mission de coder en Python le jeu des allumettes. Il y a 13 allumettes dans le tas initial dans lequel le joueur puis l'ordinateur retirent tour à tour entre 1 et 3 allumettes. Le perdant est le dernier à avoir pris une allumette. On doit donc faire jouer un humain contre un ordinateur: On demande à l'humain lors de son tour le nombre d'allumettes qu'il veut retirer, tandis que la difficulté de l'ordinateur sera choisie par le joueur en début de partie. Ces difficultés seront "Naif" où il choisit au hasard entre 1 et le nombre de retrait maximum possible, "Rapide" où il retire systématiquement le maximum d'allumettes possible, "Distrait" où il essaie de retirer entre 1 à 3 allumettes jusqu'à ce que ca fonctionne, et "Expert" où il joue du mieux que possible. Pour cette dernière, en analysant les tours possibles il semblerait qu'il faut toujours réussir à laisser un nombre d'allumettes congru à 1 modulo 4 à son adversaire. Un affichage particulier est attendu. Je te le partagerai juste après. Peux-tu me faire la structure du code Python ? Je voudrai faire ca de manière fonctionnelle afin d'éviter le moins de répétition possible. Je me chargerai du gros du code, écris-moi juste la structure à compléter.
+
+- J'ai pour mission de coder en Python le jeu des allumettes. Il y a 13 allumettes dans le tas initial dans lequel le joueur puis l'ordinateur retirent tour à tour entre 1 et 3 allumettes. Le perdant est le dernier à avoir pris une allumette. On doit donc faire jouer un humain contre un ordinateur: On demande à l'humain lors de son tour le nombre d'allumettes qu'il veut retirer, tandis que la difficulté de l'ordinateur sera choisie par le joueur en début de partie. Ces difficultés seront "Naif" où il choisit au hasard entre 1 et le nombre de retrait maximum possible, "Rapide" où il retire systématiquement le maximum d'allumettes possible, "Distrait" où il essaie de retirer entre 1 à 3 allumettes jusqu'à ce que ca fonctionne, et "Expert" où il joue du mieux que possible. Pour cette dernière, en analysant les tours possibles il semblerait qu'il faut toujours réussir à laisser un nombre d'allumettes congru à 1 modulo 4 à son adversaire. Un affichage particulier est attendu. Je te le partagerai juste après. Peux-tu me faire la structure du code Python ? Je voudrai faire ca de manière fonctionnelle afin d'éviter le moins de répétition possible. Je me chargerai du gros du code, écris-moi juste la structure à compléter.
 
 
 ## Émulation
@@ -723,24 +725,17 @@ if __name__ == "__main__":
 
 <u>Prompt</u>:
 
-    - Tu es un programmeur fonctionnel. Ton objectif est d'implémenter en Python le jeu des 13 allumettes.
-
-    Il s'agit d'un jeu à deux joueurs où on place un tas initial d'allumettes (13 par défaut) dans lequel chaque joueur va prendre tour à tour entre 1 et 3 allumettes. Le perdant est le joueur ayant pris la dernière allumette.
-
-    Tu codes le jeu de sorte qu'il s'agit d'un affrontement entre un joueur humain et un ordinateur. Tu pourras demander en début de partie si le joueur veut commencer ou laisser la main à l'ordinateur. Ce dernier aura 4 niveaux de difficultés qu'on nous demandera de choisir en début de partie: Naif où l'ordi prend un nombre entre 1 et le maximum possible (3 ou moins s'il reste moins de 3 allumettes), Rapide où l'ordi prend toujours le nombre maximum d'allumettes que lui permet le tas, Distrait ou il prend un nombre entre 1 et 3, et Expert où il joue de la meilleure manière possible.
-
-    On attend un affichage particulier dont tu laisseras la fonction vide pour le moment.
-
-    Aussi, tu codes avec un code facilement changeable avec des valeurs par défaut qu'on peut modifier. L'architecture de l'application doit aussi permettre d'ajouter une nouvelle difficulté sans modifier grand chose au code déjà existant.
-
-    Enfin, tu évites au maximum d'imbriquer des structures de contrôle: Si plusieurs structures s'imbriquent c'est qu'on peut en faire plusieurs fonctions.
+- Tu es un programmeur fonctionnel. Ton objectif est d'implémenter en Python le jeu des 13 allumettes.
+Il s'agit d'un jeu à deux joueurs où on place un tas initial d'allumettes (13 par défaut) dans lequel chaque joueur va prendre tour à tour entre 1 et 3 allumettes. Le perdant est le joueur ayant pris la dernière allumette.
+Tu codes le jeu de sorte qu'il s'agit d'un affrontement entre un joueur humain et un ordinateur. Tu pourras demander en début de partie si le joueur veut commencer ou laisser la main à l'ordinateur. Ce dernier aura 4 niveaux de difficultés qu'on nous demandera de choisir en début de partie: Naif où l'ordi prend un nombre entre 1 et le maximum possible (3 ou moins s'il reste moins de 3 allumettes), Rapide où l'ordi prend toujours le nombre maximum d'allumettes que lui permet le tas, Distrait ou il prend un nombre entre 1 et 3, et Expert où il joue de la meilleure manière possible.
+On attend un affichage particulier dont tu laisseras la fonction vide pour le moment.
+Aussi, tu codes avec un code facilement changeable avec des valeurs par défaut qu'on peut modifier. L'architecture de l'application doit aussi permettre d'ajouter une nouvelle difficulté sans modifier grand chose au code déjà existant.
+Enfin, tu évites au maximum d'imbriquer des structures de contrôle: Si plusieurs structures s'imbriquent c'est qu'on peut en faire plusieurs fonctions.
 
 
 ## Atteindre la co-créativité
 
 À finir pour vendredi
-
-
 
 
 ## ChatGPT
@@ -764,7 +759,7 @@ def afficher_etat(nb_allumettes: int):
     pass
 
 # --- Choix du joueur humain ---
-def demander_choix_joueur(max_possible: int) -> int:
+def demander_choix_joueur(max_possible: int) &rarr; int:
     while True:
         try:
             choix = int(input(f"Combien d'allumettes voulez-vous prendre ? (1 à {max_possible}) : "))
@@ -775,16 +770,16 @@ def demander_choix_joueur(max_possible: int) -> int:
             print("Entrée non valide. Entrez un nombre.")
 
 # --- IA : stratégies de jeu ---
-def strategie_naive(matches_restants: int, max_take: int) -> int:
+def strategie_naive(matches_restants: int, max_take: int) &rarr; int:
     return random.randint(1, min(matches_restants, max_take))
 
-def strategie_rapide(matches_restants: int, max_take: int) -> int:
+def strategie_rapide(matches_restants: int, max_take: int) &rarr; int:
     return min(matches_restants, max_take)
 
-def strategie_distrait(matches_restants: int, max_take: int) -> int:
+def strategie_distrait(matches_restants: int, max_take: int) &rarr; int:
     return random.choice([1, 2, 3][:min(matches_restants, max_take)])
 
-def strategie_expert(matches_restants: int, max_take: int) -> int:
+def strategie_expert(matches_restants: int, max_take: int) &rarr; int:
     prise = (matches_restants - 1) % (max_take + 1)
     return prise if prise != 0 else 1
 
@@ -797,11 +792,11 @@ strategies: dict[str, Callable[[int, int], int]] = {
 }
 
 # --- Tour du joueur humain ---
-def tour_joueur(matches_restants: int, max_take: int) -> int:
+def tour_joueur(matches_restants: int, max_take: int) &rarr; int:
     return demander_choix_joueur(min(matches_restants, max_take))
 
 # --- Tour de l'ordinateur ---
-def tour_ordinateur(matches_restants: int, max_take: int, strategie: Callable[[int, int], int]) -> int:
+def tour_ordinateur(matches_restants: int, max_take: int, strategie: Callable[[int, int], int]) &rarr; int:
     return strategie(matches_restants, max_take)
 
 # --- Fonction principale du jeu ---
@@ -832,7 +827,7 @@ def jouer_partie(total_matches: int = DEFAULT_TOTAL_MATCHES, max_take: int = DEF
     print(perdant)
 
 # --- Choix des options en début de partie ---
-def demander_difficulte() -> str:
+def demander_difficulte() &rarr; str:
     print("Choisissez un niveau de difficulté :")
     for i, nom in enumerate(strategies):
         print(f"{i + 1}. {nom.capitalize()}")
@@ -846,7 +841,7 @@ def demander_difficulte() -> str:
             pass
         print("Choix invalide.")
 
-def demander_si_joueur_commence() -> bool:
+def demander_si_joueur_commence() &rarr; bool:
     choix = input("Souhaitez-vous commencer ? (o/n) : ").lower()
     return choix.startswith("o")
 
