@@ -26,7 +26,7 @@ Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique 
 
 ## ChatGPT
 <u>Interactions</u>:
-	&rarr; [checker ce lien](https://chatgpt.com/share/6852ba5d-332c-8001-a13e-b82d25338bcd)
+	&rarr; [voir ce lien](https://chatgpt.com/share/6852ba5d-332c-8001-a13e-b82d25338bcd)
 
 <u>Résultat du code</u>:
 ```python
@@ -230,7 +230,7 @@ Vous avez perdu !
 ## Github Copilot (Claude 3.7 Thinking)
 
 <u>Interactions</u>:
-	&rarr; [Checker ce fichier](https://github.com/YanRabe/LLMsForEducation/blob/main/copilot_chats/passive_iter_1.md)
+	&rarr; [voir ce fichier](https://github.com/YanRabe/LLMsForEducation/blob/main/copilot_chats/passive_iter_1.md)
 
 <u>Résultat du code</u>:
 ```python
@@ -519,7 +519,7 @@ Pour émuler une consommation créative de l'IA, je me suis encore basé sur la 
 ## ChatGPT
 
 <u>Interactions</u>:
-	&rarr; [checker ce lien](https://chatgpt.com/share/685576b8-ae64-8001-ab0b-2a81c7d9979f)
+	&rarr; [voir ce lien](https://chatgpt.com/share/685576b8-ae64-8001-ab0b-2a81c7d9979f)
 
 <u>Résultat du code</u>:
 
@@ -621,7 +621,7 @@ C'est un code à compléter.
 ## Github Copilot
 
 <u>Interactions</u>:
-	&rarr; [checker ce lien](https://github.com/YanRabe/LLMsForEducation/blob/main/copilot_chats/creative_iter_2.md)
+	&rarr; [voir ce lien](https://github.com/YanRabe/LLMsForEducation/blob/main/copilot_chats/creative_iter_2.md)
 
 <u>Résultat du code</u>:
 
@@ -733,57 +733,68 @@ Aussi, tu codes avec un code facilement changeable avec des valeurs par défaut 
 Enfin, tu évites au maximum d'imbriquer des structures de contrôle: Si plusieurs structures s'imbriquent c'est qu'on peut en faire plusieurs fonctions.
 
 
-## Atteindre la co-créativité
+## Atteindre la co-création
 
-À finir pour vendredi
-
+Pour atteindre la co-création, j'ai d'abord role prompté ChatGPT pour spécialiser un peu plus ses réponses. J'ai aussi assimilé les consignes du projet et les ai clairement dictées à l'IA, tout en détaillant ce que j'attendais exactement, tout en laissant de la place pour des sections que je pourrais coder seul.
 
 ## ChatGPT
 
-<u>Interactions</u>:
-	&rarr; maj Lien
+<u>Interactions (importante pour voir les changements dans le code)</u>:
+	&rarr; [voir ce lien](https://chatgpt.com/share/686e79d3-2bb8-8001-a3c0-e779c2644ef5)
 
-<u>Résultat du code</u>:
+<u>Résultat du code</u> (après interactions et corrections):
 
 ```python
 import random
 from typing import Callable
 
 # --- Configuration par défaut ---
-DEFAULT_TOTAL_MATCHES = 13
-DEFAULT_MAX_TAKE = 3
+DEFAUT_TAS = 13            # Nombre d'allumettes initial
+DEFAUT_PRISE_MAX = 3       # Nombre max d'allumettes qu'un joueur peut retirer
 
-# --- Affichage (à compléter) ---
+# --- Affichage (à personnaliser selon besoin graphique ou console) ---
 def afficher_etat(nb_allumettes: int):
-    # Laisser cette fonction vide ou personnaliser l'affichage ici
+    # Cette fonction est prévue pour afficher le nombre d'allumettes restantes
+    # Exemple d'affichage graphique : | | | ... ou juste un nombre
     pass
 
-# --- Choix du joueur humain ---
-def demander_choix_joueur(max_possible: int) &rarr; int:
+# --- Entrée du joueur humain ---
+def demander_choix_joueur(max_possible: int) -> int:
+    """Demande au joueur combien d’allumettes il veut prendre, avec gestion des erreurs."""
     while True:
         try:
-            choix = int(input(f"Combien d'allumettes voulez-vous prendre ? (1 à {max_possible}) : "))
+            choix = int(input(f"Combien voulez-vous en prendre ? "))
             if 1 <= choix <= max_possible:
                 return choix
-            print("Choix invalide. Essayez encore.")
+            # Message d’erreur personnalisé selon l'erreur
+            raison_invalide = f"{choix}"
+            raison_invalide += f"< {max_possible}" if choix > max_possible else f"> 1"
+            print(f"Impossible ! Prise invalide. ({raison_invalide})")
         except ValueError:
             print("Entrée non valide. Entrez un nombre.")
 
-# --- IA : stratégies de jeu ---
-def strategie_naive(matches_restants: int, max_take: int) &rarr; int:
-    return random.randint(1, min(matches_restants, max_take))
+# --- IA : Stratégies de l’ordinateur selon la difficulté choisie ---
+def strategie_naive(tas_actuel: int, prise_max: int) -> int:
+    """L'ordinateur prend un nombre aléatoire possible d’allumettes."""
+    return random.randint(1, min(tas_actuel, prise_max))
 
-def strategie_rapide(matches_restants: int, max_take: int) &rarr; int:
-    return min(matches_restants, max_take)
+def strategie_rapide(tas_actuel: int, prise_max: int) -> int:
+    """L'ordinateur prend le maximum d’allumettes possible."""
+    return min(tas_actuel, prise_max)
 
-def strategie_distrait(matches_restants: int, max_take: int) &rarr; int:
-    return random.choice([1, 2, 3][:min(matches_restants, max_take)])
+def strategie_distrait(tas_actuel: int, prise_max: int) -> int:
+    """L'ordinateur prend un nombre complètement aléatoire entre 1 et 3 (ou max restant)."""
+    return random.randint(1, min(tas_actuel, prise_max))
 
-def strategie_expert(matches_restants: int, max_take: int) &rarr; int:
-    prise = (matches_restants - 1) % (max_take + 1)
+def strategie_expert(tas_actuel: int, prise_max: int) -> int:
+    """
+    Stratégie optimale basée sur le modulo :
+    Idéalement, on laisse toujours un multiple de (prise_max + 1) à l’adversaire.
+    """
+    prise = (tas_actuel - 1) % (prise_max + 1)
     return prise if prise != 0 else 1
 
-# --- Dictionnaire des IA ---
+# --- Enregistrement des stratégies IA disponibles ---
 strategies: dict[str, Callable[[int, int], int]] = {
     "naif": strategie_naive,
     "rapide": strategie_rapide,
@@ -791,43 +802,38 @@ strategies: dict[str, Callable[[int, int], int]] = {
     "expert": strategie_expert,
 }
 
-# --- Tour du joueur humain ---
-def tour_joueur(matches_restants: int, max_take: int) &rarr; int:
-    return demander_choix_joueur(min(matches_restants, max_take))
-
-# --- Tour de l'ordinateur ---
-def tour_ordinateur(matches_restants: int, max_take: int, strategie: Callable[[int, int], int]) &rarr; int:
-    return strategie(matches_restants, max_take)
-
-# --- Fonction principale du jeu ---
-def jouer_partie(total_matches: int = DEFAULT_TOTAL_MATCHES, max_take: int = DEFAULT_MAX_TAKE):
+# --- Lancement de la partie ---
+def jouer_partie(tas_initial_allumettes: int = DEFAUT_TAS, prise_max: int = DEFAUT_PRISE_MAX):
+    """
+    Fonction principale qui orchestre le jeu :
+    - Choix de la difficulté
+    - Choix du joueur qui commence
+    - Boucle de jeu alternée
+    - Détection du perdant
+    """
     niveau = demander_difficulte()
     strategie_ordi = strategies[niveau]
 
     joueur_commence = demander_si_joueur_commence()
 
-    matches = total_matches
+    tas_allumettes = tas_initial_allumettes
     joueur_actuel = "joueur" if joueur_commence else "ordi"
 
-    while matches > 0:
-        afficher_etat(matches)
-        if joueur_actuel == "joueur":
-            prise = tour_joueur(matches, max_take)
-        else:
-            prise = tour_ordinateur(matches, max_take, strategie_ordi)
-            print(f"L'ordinateur prend {prise} allumette(s).")
-
-        matches -= prise
-        if matches == 0:
-            break
+    # Boucle principale du jeu
+    while tas_allumettes > 0:
+        afficher_etat(tas_allumettes)
+        prise = get_prise(joueur_actuel, tas_allumettes, prise_max, strategie_ordi)
+        tas_allumettes -= prise
         joueur_actuel = "ordi" if joueur_actuel == "joueur" else "joueur"
 
-    afficher_etat(matches)
-    perdant = "Vous avez perdu !" if joueur_actuel == "joueur" else "L'ordinateur a perdu !"
+    # Le dernier joueur à avoir joué a perdu
+    afficher_etat(tas_allumettes)
+    perdant = "Vous avez perdu !" if joueur_actuel == "joueur" else "Vous avez gagné !"
     print(perdant)
 
-# --- Choix des options en début de partie ---
-def demander_difficulte() &rarr; str:
+# --- Menu : Choix de la difficulté IA ---
+def demander_difficulte() -> str:
+    """Affiche et demande à l’utilisateur de choisir un niveau de difficulté IA."""
     print("Choisissez un niveau de difficulté :")
     for i, nom in enumerate(strategies):
         print(f"{i + 1}. {nom.capitalize()}")
@@ -841,11 +847,43 @@ def demander_difficulte() &rarr; str:
             pass
         print("Choix invalide.")
 
-def demander_si_joueur_commence() &rarr; bool:
-    choix = input("Souhaitez-vous commencer ? (o/n) : ").lower()
-    return choix.startswith("o")
+# --- Menu : Choix du joueur qui commence ---
+def demander_si_joueur_commence() -> bool:
+    """Demande si le joueur souhaite commencer en premier."""
+    choix = input("Début de partie. Voulez-vous jouer en premier ? (y/N) : ").lower()
+    res = choix.startswith("y")
+    if res:
+        print("Vous avez choisi de jouer en premier.")
+    else:
+        print("Vous avez choisi de laisser l'ordinateur commencer.")
+    return res
 
-# --- Lancer le jeu ---
+# --- Détermination de la prise de chaque joueur ---
+def get_prise(joueur_actuel: str, tas_allumettes: int, prise_max: int, strategie_ordi: Callable[[int, int], int]) -> int:
+    """
+    Donne le nombre d’allumettes prises par le joueur courant.
+    Appelle soit la saisie du joueur humain, soit la stratégie IA.
+    """
+    if joueur_actuel == "joueur":
+        prise = demander_choix_joueur(min(tas_allumettes, prise_max))
+        print(f"Vous retirez {prise} allumette" + ("s" if prise > 1 else "") + " du tas.")
+    else:
+        prise = strategie_ordi(tas_allumettes, prise_max)
+        print(f"L'ordinateur prend {prise} allumette(s).")
+    return prise
+
+# --- Lancer le jeu depuis le terminal ---
 if __name__ == "__main__":
     jouer_partie()
 ```
+
+## Commentaires sur le code obtenu
+
+Ce code vient après interaction avec l'IA pour corriger les erreurs et affiner le code. On peut en retenir que:
+- Le code est plutôt bien structuré et suit les principes de la programmation fonctionnelle. Il est facile à lire et à comprendre, même si quelques choix de programmation rendent le code chargé. Aussi, j'ai eu à raffiner un peu plus après le premier passage, puisque l'IA a parfois oublié de ne pas imbriquer des structures de contrôle. De même, le code manquait de commentaires et de *docstrings*. Sinon, l'IA a globalement bien compris les consignes, malgré quelques stratégies incomprises comme "Distrait" qui n'est pas implémentée comme on l'attendait. De même, il semblerait que l'IA ait confondu le perdant et le gagnant, puisque le code est écrit pour que le joueur gagne en retirant la dernière allumette, alors que c'est l'inverse qui est attendu. C'est une erreur qui se répète avec ChatGPT alors que le prompt est clair. **Ca vient probablement de son apprentissage où la plupart des données apprises sont des jeux où le gagnant est celui qui retire la dernière allumette**.
+
+&rarr; On remarque de nouveau que sans connaissance/expertise au préalable du sujet, on ne peut pas exploiter pleinement les capacités de l'IA et on s'en remet à elle pour des tâches qui sont parfois simples. Je confirme avec ce test là qu'il faut un regard critique sur le code produit pour être capable de le corriger ou rebondir dessus, sans quoi on ne va non seulement rater le cahier des charges et finir avec un code qui parfois ne fonctionne pas, mais aussi apprendre largement moins et faire trop peu travailler notre intellect.
+
+# Conclusion sur la co-création pour une tâche simple (et avec sujet connu)
+
+Globalement, on constate que la co-création dans les exercices d'apprentissage de programmation est possible avec les LLMs qui peuvent produire un code de qualité, mais qu'il y a nécessité en premier lieu de savoir intéragir judicieusement avec l'IA, faire du role prompting et surtout connaître son sujet, sans quoi l'utilisateur manquera d'agentivité et laissera l'IA le mener au lieu de s'en servir comme assistant de réflexion. Ses connaissances sur le sujet et cette agentivité lui permettront aussi de corriger les erreurs éventuelles de l'IA et d'affiner/améliorer le code produit. De plus, sur une observation plus personnelle, les IAs généralistes comme ChatGPT manquent définitivement de spécialisation (*fine-tuning*) pour des tâches précises et semblent halluciner plus facilement (c.f le code du gagnant/perdant qui est incohérent par rapport à ce qu'écrit textuellement l'IA), là où Github Copilot (ici spécifiquement Claude Sonnet 3.7) est plus consistant et précis dans les réponses et évite ce genre d'erreur "bêtes". On peut probablement mettre ca sur le dos de l'apprentissage et du fine-tuning puisque Copilot est entrainé sur l'entiereté du code public disponible sur Github. Enfin, cela n'empêche pas Copilot sous Claude Sonnet notamment d'*over-engineer* sa production et de faire bien plus ce qu'on demande (¢a peut être frustrant!), ce qui est encore une fois synonyme de tous les biais liés aux LLMs dont les utilisateurs doivent absolument être conscients sans quoi ils ne pourront pas exploiter pleinement les capacités de l'IA.
