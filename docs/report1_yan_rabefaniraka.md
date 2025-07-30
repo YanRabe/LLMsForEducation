@@ -84,41 +84,84 @@ Les principes que j'ai utilisés pour essayer d'approcher la co-coginition (/ co
 
 Pour l'étude de cas approfondie, nous avons pris deux sujets distincts dans leur exigence. Cela nous permettra de nous faire une idée sur la viabilité d'utiliser une IA pour un cas accessible comme pour un cas plus complexe.
 
+Pour plus de détails, voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/pdfs/allumettes/prompts.pdf).
+
 ## Jeu des allumettes - Cas grand public
 
 Le jeu des allumettes est un sujet de projet très court que j'ai eu à réaliser en **Ada** puis en **Java**. La légère complexité vient des contraintes imposées qui sont claires et rigides, et qui permettent d'évaluer la capacité d'un étudiant à implémenter un cahier des charges très explicite dans ses attentes.
 
 ### Écriture d'un sujet
 
-La première étape a été de réécrire simplement le [sujet](../allumettes/pdfs/allumettes_subject.pdf) du jeu des allumettes. Il inclut les règles du jeu et conditions de victoire, ainsi que les contraintes de programmation et exigences. J'y aussi mis des extraits d'affichage suffisamment complet pour qu'il soit reproductible. Cela pourra servir de base pour évaluer les réponses de l'IA et ainsi savoir comment mieux poser les prompts à partir du sujet directement.
+La première étape a été de réécrire simplement le [sujet](https://github.com/YanRabe/LLMsForEducation/blob/main/pdfs/allumettes/subject.pdf) du jeu des allumettes. Il inclut les règles du jeu et conditions de victoire, ainsi que les contraintes de programmation et exigences. J'y aussi mis des extraits d'affichage suffisamment complet pour qu'il soit reproductible. Cela pourra servir de base pour évaluer les réponses de l'IA et ainsi savoir comment mieux poser les prompts à partir du sujet directement.
 La qualité des prompts sera aussi auto-évaluée selon la grille du PPAi6, au même titre que la qualité des réponses sera évaluée selon le code obtenu.
 
 ### Résultats des tests
 
-  - **Consommation passive** &rarr; 
-  - **Création de contenu** &rarr;
-  - **Tentative de co-création** &rarr;
+  - **Consommation passive** &rarr; On remarque clairement que cette manière de se servir de l'IA est terriblement inefficace; cette dernière fait des erreurs de compréhension et doit compléter des pans importants de la consigne qui ont été omis dans le contexte. Pour autant, on peut voir la puissance de l'IA pour générer du code qui fonctionne, même si ce dernier ne remplit pas les contraintes du sujet. On verra aussi plus tard que certaines erreurs que fait ChatGPT (Copilot moins) se poursuivent dans les tests suivants malgré un meilleur prompting.
+  - **Création de contenu** &rarr; Les deux IAs utilisées ont généré une structure de départ plutôt bonne et facilement complétable/compréhensible par l'humain derrière, similaire à un raffinage. Pour autant, Copilot avec Claude Sonnet continue de sur-générer le code et en fait plus que nécessaire. Cela s'avèrerait utile pour la co-cŕeation nonobstant.
+  - **Tentative de co-création** &rarr; Le constat fait est que la co-création est possible avec les LLMs sur ce genre de sujets simples, avec un code produit de qualité, respectant les contraintes et attentes du sujet. Cependant, cela demande à l'utilisateur de savoir intéragir intelligemment avec l'IA: Il doit savoir prompter efficacement avec du role prompting, fournir un contexte détaillé avec les attentes et contraintes exactes du cahier des charges, et être capable de corriger les erreurs de l'IA, ou de rebondir sur ses propositions pour avancer de son côte. Cela implique donc que l'utilisateur ait au moins les bases du langage de programmation utilisé, et surtout une compréhension précise du sujet. Il doit pouvoir communiquer efficacement ce qu'il attend de l'IA, et doit pouvoir interagir avec l'IA comme un assistant à qui il montre ses avancées et demande une suggestion ou une correction. Dans le cas du jeu des allumettes, l'IA-- en particulier ChatGPT-- a beau avoir produit un code respectable, les biais d'apprentissage produisent des erreurs de compréhension de consigne, et les lacunes en bonnes pratiques de programmation rendent la correction obligatoire. Aussi, il semblerait aussi que Github Copilot (ou Claude Sonnet par extension) soit plus efficace pour la co-création que ChatGPT si on s'inspire des résultats précédents, malgré sa tendance à en faire trop et à donc laisser moins de marge de réflexion personnelle à l'utilisateur.
 
 ### Conclusion - Jeu des allumettes
 
+Ce qu'on peut conclure de cette étude de cas est que dans le contexte de l'apprentissage de la programmation, les LLMs sont capables de **produire du code de qualité**, mais nécessitent activement que **l'utilisateur interagisse avec pour corriger ou rebondir sur leurs propositions**. Pour que l'apprentissage et la co-création soient efficaces, il faut donc que l'utilisateur ait une compréhension précise du sujet et une certaine expertise dans le langage utilisé. Pour autant, il semblerait que l'IA puisse parfois **faire beaucoup trop et mâche le travail de l'utilisateur**, ce qui peut être *contre-productif* si ce dernier tente de s'exercer ou de se former. Et à cela s'ajoute aussi les IAs qui font des **erreurs** ou qui **hallucinent** dans leur réponse, comme on a pu observer ChatGPT le faire dans tous les tests sans exception. En clair, le mieux serait pour les étudiants de d'abord commencer leur raffinage et d'ensuite s'aider de l'IA pour convertir leur travail. Ils pourraient ensuite travailler en tandem pour améliorer le produit et corriger les éventuels problèmes.
 
 ## Ingénierie Dirigée par les Modèles - Filière Réseau de l'N7
 
 L'***Ingénierie Dirigée par les Modèles*** est une matière relativement complexe enseignée à l'ENSEEIHT. L'itération choisie est celle pour la filière **Réseau** de l'école, qui n'est donc pas forcément composée d'étudiants experts en informatique.
 Ainsi, on peut observer l'utilité de l'IA dans l'apprentissage et l'application de langages de modélisation, pour des étudiants dont le domaine d'expertise visé n'est pas la programmation ou le logiciel. Cette section part directement du postulat qu'on veut la co-création et utilise donc les points mentionnés dans la section correspondante.
 
+Pour plus de détails, voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/pdfs/IDM/resume_IDM.pdf).
+
 ### Zones de test
 
-écrire les langages/points étudiés et comment l'ia a été utilisée.
+En tant qu'élève peu expérimenté en IDM et dont mes connaissances se limitent à de l'apprentissage autonome, j'ai utilisé l'IA pour:
+
+- **Expliquer les graphes de marquage** &rarr; Elle a servi à m'expliquer les graphes de marquage du cas d'interblocage sur Tina. Elle a su très bien expliquer tous les éléments pour quelqu'un comme moi qui s'y connaît peu: Elle détaille les états, comprend correctement les transitions et explique pertinemment d'où vient l'interblocage. Cette utilisation pourrait être utile pour comprendre un concept du cours et la syntaxe de modélisation associée. Cependant, l'IA a clairement mâché le travail pour moi, et il m'est difficile de dire si j'aurais pu comprendre le graphe sans son aide. De même, le manque de réflexion de mon côté interroge sur la permanence des informations tout juste acquises dans ma mémoire (sans l'effort personnel, compliqué de mémoriser). Il est donc difficile de dire si l'IA est utile pour apprendre ou si elle est contre-productive dans ce cas.
+- **Apprendre la syntaxe OCL et comprendre le métamodèle de SimplePDL en OCL** &rarr; J'ai utilisé l'IA pour m'aider à comprendre la syntaxe OCL et le métamodèle de SimplePDL. Elle a pu m'expliquer les concepts de manière claire et concise, et la réponse est clairement réutilisable pour réviser et renforcer ma compréhension de la syntaxe OCL. Cependant, la difficulté de l'IA à comprendre certains éléments du métamodèle montre qu'elle n'est pas infaillible et qu'il est donc nécessaire de comprendre le sujet modélisé. Ainsi, c'est définitivement une bonne manière de réviser la syntaxe OCL, mais il est impossible d'apprendre avec l'IA seule et sans avoir au préalable une compréhension du sujet.
+- **Écrire des contraintes SimplePDL en OCL** &rarr; J'ai demandé à l'IA de m'aider à ajouter certaines contraintes au métamodèle de SimplePDL. En donnant le fichier pour contexte, il est capable de proposer des contraintes cohérentes avec le métamodèle. L'IA comprend bien la logique des dépendances entre activités et peut suggérer des invariants pertinents, bien qu'il faille parfois corriger la syntaxe OCL spécifique ou la signification de certains contextes. Cela montre que l'IA peut être utile pour écrire du code OCL, mais qu'elle nécessite une compréhension préalable du métamodèle et de la syntaxe OCL pour être efficace. En somme la conclusion est la même: l'IA semble être un bon outil pour aider à écrire des métamodèles mais nécessite d'être capable de comprendre intégralement le sujet sans quoi elle fait le gros du travail, incluant des erreurs sur le chemin.
+
 
 ### Résultats et conclusion - IDM
 
+À ce stade de l'étude de cas, on peut dire dans l'ensemble que l'IA a actuellement les capacités pour aider à comprendre les principes et les différentes syntaxes liés à la modélisation de métamodèles, mais qu'elle a encore des difficultés évidentes à certains éléments du sujet et écrit des bêtises. Cela est symptomatique du domaine de l'IDM qui est un peu plus niché et complexe, et qui est donc moins bien compris par les LLMs. À noter que l'IA mâche clairement le travail pour certaines tâches, et qu'il est donc nécessaire de connaître le sujet au préalable pour bénéficier correctement de son aide.
+
+### Suite
+
+Pour voir la pertinence de l'utilisation de l'IA en IDM, il reste trois tests à essayer de réaliser avant la fin du stage:
+
+- TP sur XTest
+- TP sur Sirius
+- TP sur Acceleo
+
+Ces tests donneront sûrement une idée plus précise de la place que pourrait prendre l'IA dans l'apprentissage de sujets aussi complexes que l'IDM, et de la pertinence de son utilisation pour les étudiants.
+
 # Préparation d'un notebook pour une possible formation
 
-Détailler les avancées sur le notebook pour David
+Un petit [*Jupyter Notebook*](https://github.com/YanRabe/LLMsForEducation/blob/main/notebooks/Main_notebook.ipynb) a été préparé pour servir de fondation à une potentielle formation. J'y ai mis une introduction aux LLMs avec des illustrations en Python, ainsi que des explications sur les biais et les limites de l'IA. Il est aussi possible d'y ajouter des exercices interactifs pour les étudiants, comme des questions à choix multiples ou des exercices de code à compléter. Une partie sur la pondération des *tokens* par les modèles à l'aide d'*interpreto* n'a pas pu être débutée, mais il serait d'intéressant de considérer cette section pour montrer aux étudiants comment les LLMs fonctionnent en interne, et l'importance de leur choix de prompts.
 
 ## Comparaison des modèles selon les cas d'utilisation
 
-Insérer le tableau réalisé (fais le en mieux qd même)
+J'ai synthetisé sur ce [tableau](https://github.com/YanRabe/LLMsForEducation/blob/main/docs/model_comparison_by_task.md) les tâches récurrentes de développement et les modèles disponibles sur Github Copilot les plus appropriés. Pour cela j'ai utilisé cette [page de documentation](https://docs.github.com/en/copilot/reference/ai-models/choosing-the-right-ai-model-for-your-task#gpt-41) rédigée par Github et cet [article](https://github.blog/ai-and-ml/github-copilot/which-ai-model-should-i-use-with-github-copilot/) du blog Github.
+
 
 # Conclusions et pistes d'exploration
+
+À ce stade de la mission, l'avancée est comme suit:
+
+- [X] Étude pratique sur la pertinence de l'utilisation de l'IA dans des cas d'utilisation spécifiques
+  - [X] Cas simple avec le jeu des allumettes
+  - [X] Première évaluation d'un cas plus complexe avec l'IDM
+- [ ]Finalisation de l'étude de cas IDM
+  - [ ] Tests sur les TPs restants
+  - [ ] Retour sur la première conclusion du rapport
+- [ ] Préparation d'un notebook pour une formation
+  - [X] Introduction aux LLMs 
+  - Discussion sur les biais inhérents aux LLMs
+  - [X] Comparaison des modèles de langage selon les tâches
+  - [ ] Pondération des tokens avec interpreto
+
+Ca a été une mission plutôt enrichissante a effectuer avec beaucoup de connaissances sur l'IA Générative acquises ou renforcées. Ca a aussi été une bonne introduction à la recherche. Sur une note plus personnelle, j'ai pu prendre une certaine avance sur la matière IDM, ce qui me donnera une petite longueur d'avance pour la 2ème année. Mais j'ai aussi ressenti durant le stage que c'est un travail qui est difficile à réaliser seul, notamment parce qu'avoir d'autres esprits sur le même sujet auraient permis d'étayer les réflexions concernant l'étude de cas, et aussi car en ce qui concerne la résolution d'un blocage, c'est souvent compliqué de trouver quelle tâche poursuivre quand autant semble être à faire en même temps.
+
+Enfin, la conclusion actuelle vis-à-vis de l'utilisation de l'IA dans l'apprentissage est que les LLMs peuvent être un outil très puissant pour l'étudiant notamment dans la production d'un projet relativement simple avec des consignes claires qu'il comprend et connaît parfaitement. Cependant, pour une tâche nouvelle et complexe, l'apport positif de l'IA sur l'enrichissement individuel de l'étudiant est plus discutable. En effet, l'IA peut aider à la compréhension spontanée d'un concept ou d'une syntaxe ainsi que poser des bases de code exploitables, mais combiné à son potentiel d'erreurs, sa tendance à parfois mâcher le travail de l'utilisateur et son incapacité à comprendre des sujets trop complexes font pencher la balance vers l'idée qu'il vaut mieux déjà prendre en main le gros du sujet seul avant de se tourner vers l'IA pour la co-cognition.
+
+En clair, il a été évident pour chaque test que sans connaissance préalable du sujet, l'IA peut même s'avérer contre-productive.
