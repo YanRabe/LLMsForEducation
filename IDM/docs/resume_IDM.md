@@ -39,7 +39,7 @@ Le changement de machine m'a obligé à réinstaller les outils du module.
 
 J'ai pu utiliser l'IA (Copilot avec Claude Sonnet 4) pour m'expliquer les résultats du graphe de marquage du cas d'interblocage sur ***Tina***. Elle a su très bien expliquer tous les éléments pour quelqu'un comme moi qui s'y connait peu: Elle détaille les états, comprend correctement les transitions et explique pertinemment d'où vient l'interblocage.
 
-<u>Interaction avec l'IA</u>: checker [ici](../copilot_chat/interblocages.md)
+<u>Interaction avec l'IA</u>: voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/IDM/copilot_chat/interblocages.md)
 
 ## TP2
 
@@ -48,13 +48,15 @@ Il ne semble pas y avoir de cas d'utilisation possible de l'IA; Il s'agit princi
 ## TP3
 
 ### Explication OCL
-J'ai utilisé l'IA pour comprendre le métamodèle en OCl de SimplePDL: Je lui ai demandé spécifiquement de détailler la syntaxe, dans le but de comprendre celle-ci et de pouvoir la ŕeutilise rindividuellement. Le résultat est globalement plutôt bon même si elle a du mal à comprendre l'utilité de certains invariants qui semblent pourtant relativement évident à comprendre. C'est donc impossible d'apprendre avec l'IA seule. Pour autant, il s'agit définitivement d'une bonne manière de réviser la syntaxe OCL.
+J'ai utilisé l'IA pour comprendre le métamodèle en OCL de SimplePDL: Je lui ai demandé spécifiquement de détailler la syntaxe, dans le but de comprendre celle-ci et de pouvoir la réutiliser individuellement. Le résultat est globalement plutôt bon même si elle a du mal à comprendre l'utilité de certains invariants qui semblent pourtant relativement évident à comprendre. C'est donc impossible d'apprendre avec l'IA seule. Pour autant, il s'agit définitivement d'une bonne manière de réviser la syntaxe OCL.
 
-<u>Interaction avec l'IA</u>: checker [ici](../copilot_chat/ocl_process.md)
+<u>Interaction avec l'IA</u>: voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/IDM/copilot_chat/ocl_process.md)
 
 ### Écriture OCL
 
 L'une des consignes demande de créer un nouveau fichier OCL où on définit des contraintes sur *SimplePDL*. En demandant à Copilot de m'aider à ajouter de nouvelles contraintes, il analyse la structure courante du fichier SimplePDL.ocl et propose des contraintes cohérentes avec le métamodèle. L'IA comprend bien la logique des dépendances entre activités et peut suggérer des invariants pertinents, bien qu'il faille parfois corriger la syntaxe OCL spécifique ou la signification de certains **contextes**.
+
+<u>Interaction avec l'IA</u>: voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/IDM/copilot_chat/ocl_process.md)
 
 ## Tests à compléter avant la fin du stage
 
