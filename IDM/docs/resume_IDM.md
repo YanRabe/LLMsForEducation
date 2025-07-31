@@ -11,7 +11,7 @@ output: pdf_document
 
 - Fichier engendré avec:
 
-    ```
+    ```bash
     pandoc --toc -o ../../pdfs/resume_IDM.pdf resume_IDM.md
     ```
 
