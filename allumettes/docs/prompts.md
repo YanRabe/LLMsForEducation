@@ -25,10 +25,12 @@ Pour émuler une consommation passive de l'IA, je me suis basé sur la rubrique 
 
 
 ## ChatGPT
+
 <u>Interactions</u>:
 	&rarr; [voir ce lien](https://chatgpt.com/share/6852ba5d-332c-8001-a13e-b82d25338bcd)
 
 <u>Résultat du code</u>:
+
 ```python
 import random
 
@@ -133,10 +135,10 @@ def jeu():
 
 if __name__ == "__main__":
     jeu()
-
 ```
 
 <u>Test du programme</u>:
+
 ```bash
 Début de partie. Voulez-vous jouer en premier ? [y/N]
 y
@@ -216,6 +218,7 @@ Vous avez perdu !
 
 
 ### Commentaires sur le code obtenu
+
 - ChatGPT a considéré par défaut qu'on voulait une IA experte. Comme les réponses sont non-déterministes, on peut s'attendre à d'autres résultats pour l'exact même prompt.
 - Par ailleurs, malgré avoir rappelé dans sa réponse que le perdant était celui qui retirait la dernière allumette, il a sorti un code qui implémentait la variante inverse. Ainsi, on gagne en retirant la dernière...
 - De même le code est très peu commenté, là où on pourrait attendre d'un étudiant à qui on demande un code de le commenter en détail pour expliquer son raisonnement (raffinages notamment).
