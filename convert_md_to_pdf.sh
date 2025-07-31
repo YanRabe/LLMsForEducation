@@ -56,6 +56,10 @@ convert_md_to_pdf() {
     echo "Converting: $md_file -> $pdf_file"
     
     pandoc "$md_file" \
+        --number-sections \
+        --filter pandoc-xnos \
+        -V colorlinks=true \
+        -V linkcolor=blue \
         --toc \
         --highlight-style=tango \
         --pdf-engine=pdflatex \
