@@ -199,7 +199,7 @@ Ce qu'on peut conclure de cette étude de cas est que dans le contexte de l'appr
 L'***Ingénierie Dirigée par les Modèles*** est une matière relativement complexe enseignée à l'ENSEEIHT. L'itération choisie est celle pour la filière **Réseau** de l'école, qui n'est donc pas forcément composée d'étudiants experts en informatique.
 Ainsi, on peut observer l'utilité de l'IA dans l'apprentissage et l'application de langages de modélisation, pour des étudiants dont le domaine d'expertise visé n'est pas la programmation ou le logiciel. Cette section part directement du postulat qu'on veut la co-création et utilise donc les points mentionnés dans la section @sec:piste-co-cognition.
 
-Pour plus de détails, voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/pdfs/IDM/resume_IDM.pdf).
+Pour plus de détails, voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/IDM/docs/resume_IDM.md).
 
 ### Zones de test
 
