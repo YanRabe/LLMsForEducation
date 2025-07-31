@@ -14,6 +14,7 @@ EXCLUDE_FILES=(
     "Useful_links.md"
     "model_comparison_by_task.md"
     "Ppai6_creative_use_cases.md"
+    "matlab_example.md"
 )
 
 # Define patterns to exclude (you can modify this array)
@@ -56,6 +57,7 @@ convert_md_to_pdf() {
     echo "Converting: $md_file -> $pdf_file"
     
     pandoc "$md_file" \
+        --lua-filter=include-files.lua \
         --number-sections \
         --filter pandoc-xnos \
         -V colorlinks=true \
