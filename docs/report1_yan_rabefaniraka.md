@@ -11,7 +11,7 @@ output: pdf_document
 
 - Fichier engendré avec:
 
-    ```
+    ```bash
     pandoc --toc -o ../pdfs/report1_yan_rabefaniraka.pdf report1_yan_rabefaniraka.md
     ```
 - Par facilité d'écriture, on utilisera le masculin 'étudiant' pour qualifier les étudiant.es.
@@ -50,15 +50,71 @@ Dans cette section, je vais donc étayer les différents usages de l'IA Généra
 On constate plusieurs cas d'utilisation courants que font les étudiants de l'IA générative dans l'apprentissage, en particulier de ChatGPT:
 
 - **Trouver des solutions à des problèmes** **spontanés** qu'ils rencontrent lors de l'apprentissage d'un cours ou la résolution d'exercices, quand aucun professeur n'est à disposition pour y répondre. Cette utilisation est de plus en plus courante quand les étudiants résolvent des exercices pour lesquels il n'y a pas de correction claire et où ils ne sont donc pas assurés d'avoir les bonnes réponses, voire d'avoir compris le cours. Cela peut aussi s'appliquer à la programmation, quand la documentation pour une librairie est difficile à trouver ou à lire et qui incite régulièrement les étudiants à demander l'explication de lignes de code à un Chatbot. On peut par exemple penser aux différentes fonctions intégrées de *Matlab* dont la compréhension peut parfois être sinueuse. On peut aussi penser au développement *Web* où les étudiants peuvent demander à ChatGPT de leur expliquer les différentes balises *CSS* ou *HTML*.
-- **Expliquer/résumer un cours** qu'ils n'ont pas compris ou dont ils veulent vérifier leur propre compréhension. Cela peut s'apparenter à de l'aide personnalisée, avec les étudiants qui fournissent la section du cours qu'ils n'ont pas comprise. De même, certains s'en servent pour générer des questions typiques ou des quiz, comme des équivalents à la plateforme *Quizlet*.
 
-*AJOUTER IMAGES ICI pour illustrer avec Graphes python, code Matlab*.
+&rarr; Voici un exemple pour cette utilisation:
+
+  - [Contexte]{.underline}:
+  ```matlab
+  %GENERATION DE L'INFORMATION BINAIRE
+          %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+          bits = randi([0, 1], 1, N);
+          % bits_4aire = reshape(bits, [N/2, 2]);
+          dec_4aire = bit2int(bits', 2);
+  ```
+  - [Prompt]{.underline}: `Est-ce que tu peux expliquer comment fonctionne la fonction matlab bit2int dans ce contexte ?`
+  - [Réponse]{.underline}:
+  ```{.include shift-heading-level-by=2}
+  docs/matlab_example.md
+  ```
+
+- **Expliquer/résumer un cours** qu'ils n'ont pas compris ou dont ils veulent vérifier leur propre compréhension. Cela peut s'apparenter à de l'aide personnalisée, avec les étudiants qui fournissent la section du cours qu'ils n'ont pas comprise. De même, certains s'en servent pour générer des questions typiques ou des quiz, comme des équivalents à la plateforme *Quizlet*.
 
 
 ### Facilitation des tâches pénibles
 
 Une utilisation courante est aussi celle de la **facilitation des tâches fastidieuses** (répétitives, peu challengeantes) en passant par l'IA. On rencontre le plus ce cas d'utilisation lors de de TPs ou de projets qui nécessitent du code répétitif et peu demandant en réflexion technique pour les étudiants. On peut notamment penser aux méthodes répétitives en programmation orientée objet, comme des *getters* ou des *setters*, ou encore aux matières dont le code n'est pas le sujet principal mais un support d'application (algèbre linéaire, automatique ou télécommunications par exemple).
 
+&rarr; Voici un exemple pour cette utilisation:
+
+  - [Prompt]{.underline}: `Génère-moi en java les getters et setters pour une classe appelée Cercle ayant pour attributs un rayon (flottant), une coordonnée x (flottant) et une coordonnée y. Prévois aussi la gestion d'exception.`
+  - [Réponse]{.underline}(réponse tronquée):
+
+```java
+    // Getter pour le rayon
+    public float getRayon() {
+        return rayon;
+    }
+    
+    // Setter pour le rayon avec validation
+    public void setRayon(float rayon) throws IllegalArgumentException {
+        if (rayon <= 0) {
+            throw new IllegalArgumentException("Le rayon doit être strictement positif");
+        }
+        this.rayon = rayon;
+    }
+    
+    // Getter pour la coordonnée x
+    public float getX() {
+        return x;
+    }
+    
+    // Setter pour la coordonnée x
+    public void setX(float x) {
+        this.x = x;
+    }
+    
+    // Getter pour la coordonnée y
+    public float getY() {
+        return y;
+    }
+    
+    // Setter pour la coordonnée y
+    public void setY(float y) {
+        this.y = y;
+    }
+```
+
+(Pour information, utiliser IllegalArgumentException est une bonne pratique mais n'est pas forcément approprié dans notre cas. Il aurait suffit d'utiliser des *asserts*.)
 
 ### Triche
 
@@ -74,6 +130,7 @@ L'objectif visé serait pour l'étudiant d'atteindre la co-cognition: Un stade o
 
 
 Les principes que j'ai utilisés pour essayer d'approcher la co-cognition (/ co-construction) sont:
+
 - **Role prompting** &rarr; Définir un rôle et des compétences spécifiques à l'IA (e.g: "Tu es un programmeur fonctionnel"). Cela permet d'ajouter du contexte qui dirige la génération de l'IA vers un résultat plus spécialisé; C'est en particulier efficace avec des IA généralistes comme **ChatGPT**. Cela s'est révélé moins impactant avec **Github Copilot** qui est *fine-tuned* avec les répertoires publiques **Github**, et qui peut donc très bien faire le travail sans.
 - **Contexte détaillé** &rarr; Fournir les spécifications complètes du projet c'est-à-dire les consignes du projet données par le professeur concernant le code et le raisonnement, mais aussi ce qu'on attend exactement de l'IA, par exemple "expliquer le code/la syntaxe" ou encore "écrire un squelette modulaire du code".
 - **Collaboration par itération**: Être capable d'interagir avec les réponses de l'IA. Cela implique de travailler de son côté sur ce qu'elle renvoie, comme corriger son code, repérer les erreurs de compréhension (ou hallucinations), les manquements, ou simplement améliorer les prémisces qu'elle propose. La co-cognition/co-construction ressemblera inévitablement à une discussion entre deux collègues qui améliorent ou questionnent tour à tour leur proposition.
@@ -84,23 +141,53 @@ Les principes que j'ai utilisés pour essayer d'approcher la co-cognition (/ co-
 
 Pour l'étude de cas approfondie, nous avons pris deux sujets distincts dans leur exigence. Cela nous permettra de nous faire une idée sur la viabilité d'utiliser une IA pour un cas accessible comme pour un cas plus complexe.
 
-Pour plus de détails, voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/pdfs/allumettes/prompts.pdf).
-
 ## Jeu des allumettes - Cas grand public
 
 Le jeu des allumettes est un sujet de projet très court que j'ai eu à réaliser en **Ada** puis en **Java**. La légère complexité vient des contraintes imposées qui sont claires et rigides, et qui permettent d'évaluer la capacité d'un étudiant à implémenter un cahier des charges très explicite dans ses attentes.
 
+Pour plus de détails, voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/allumettes/docs/prompts.md).
+
 ### Écriture d'un sujet
 
-La première étape a été de réécrire simplement le [sujet](https://github.com/YanRabe/LLMsForEducation/blob/main/pdfs/allumettes/subject.pdf) du jeu des allumettes. Il inclut les règles du jeu et conditions de victoire, ainsi que les contraintes de programmation et exigences. J'y aussi mis des extraits d'affichage suffisamment complet pour qu'il soit reproductible. Cela pourra servir de base pour évaluer les réponses de l'IA et ainsi savoir comment mieux poser les prompts à partir du sujet directement.
-La qualité des prompts sera aussi auto-évaluée selon la grille du [PPAi6](https://github.com/YanRabe/LLMsForEducation/blob/main/docs/Ppai6_creative_use_cases.md), au même titre que la qualité des réponses sera évaluée selon le code obtenu.
-   
+La première étape a été de réécrire simplement le [sujet](https://github.com/YanRabe/LLMsForEducation/blob/main/allumettes/docs/subject.md) du jeu des allumettes. Il inclut les règles du jeu et conditions de victoire, ainsi que les contraintes de programmation et exigences. J'y aussi mis des extraits d'affichage suffisamment complet pour qu'il soit reproductible, comme ici:
+
+```bash
+Il reste 13 allumettes sur le tas.
+o o o o o   o o o o o   o o o
+| | | | |   | | | | |   | | |
+| | | | |   | | | | |   | | |
+| | | | |   | | | | |   | | |
+Combien voulez-vous en prendre ?
+> 13
+Impossible ! Prise invalide. (13 > 3).
+
+Combien voulez-vous en prendre ?
+> 0
+Impossible ! Prise invalide. (0 < 1).
+
+Combien voulez-vous en prendre ?
+> 1
+Vous retirez 1 allumette au tas.
+
+Il reste 12 allumettes sur le tas.
+o o o o o   o o o o o   o o
+| | | | |   | | | | |   | |
+| | | | |   | | | | |   | |
+| | | | |   | | | | |   | |
+A mon tour.
+> 3
+```
+
+Cela pourra servir de base pour évaluer les réponses de l'IA et ainsi savoir comment mieux poser les prompts à partir du sujet directement. Quant à la qualité des prompts, elle sera aussi auto-évaluée selon la grille du [PPAi6](https://github.com/YanRabe/LLMsForEducation/blob/main/docs/Ppai6_creative_use_cases.md), au même titre que la qualité des réponses sera évaluée selon le code obtenu.
 
 ### Résultats des tests
 
-  - **Consommation passive** &rarr; On remarque clairement que cette manière de se servir de l'IA est terriblement inefficace; cette dernière fait des erreurs de compréhension et doit compléter des pans importants de la consigne qui ont été omis dans le contexte. Pour autant, on peut voir la puissance de l'IA pour générer du code qui fonctionne, même si ce dernier ne remplit pas les contraintes du sujet. On verra aussi plus tard que certaines erreurs que fait ChatGPT (Copilot moins) se poursuivent dans les tests suivants malgré un meilleur prompting.
-  - **Création de contenu** &rarr; Les deux IA utilisées ont généré une structure de départ plutôt bonne et facilement complétable/compréhensible par l'humain derrière, similaire à un raffinage. Pour autant, Copilot avec Claude Sonnet continue de sur-générer le code et en fait plus que nécessaire. Cela s'avèrerait utile pour la co-création nonobstant.
-  - **Tentative de co-création** &rarr; Le constat fait est que la co-création est possible avec les LLMs sur ce genre de sujets simples, avec un code produit de qualité, respectant les contraintes et attentes du sujet. Cependant, cela demande à l'utilisateur de savoir interagir intelligemment avec l'IA: Il doit savoir prompter efficacement avec du role prompting, fournir un contexte détaillé avec les attentes et contraintes exactes du cahier des charges, et être capable de corriger les erreurs de l'IA, ou de rebondir sur ses propositions pour avancer de son côte. Cela implique donc que l'utilisateur ait au moins les bases du langage de programmation utilisé, et surtout une compréhension précise du sujet. Il doit pouvoir communiquer efficacement ce qu'il attend de l'IA, et doit pouvoir interagir avec l'IA comme un assistant à qui il montre ses avancées et demande une suggestion ou une correction. Dans le cas du jeu des allumettes, l'IA-- en particulier ChatGPT-- a beau avoir produit un code respectable, les biais d'apprentissage produisent des erreurs de compréhension de consigne, et les lacunes en bonnes pratiques de programmation rendent la correction obligatoire. Aussi, il semblerait aussi que Github Copilot (ou Claude Sonnet par extension) soit plus efficace pour la co-création que ChatGPT si on s'inspire des résultats précédents, malgré sa tendance à en faire trop et à donc laisser moins de marge de réflexion personnelle à l'utilisateur.
+  - **[Consommation passive](https://github.com/YanRabe/LLMsForEducation/blob/main/allumettes/docs/prompts.md#consommation--ou---passive)**:
+    - [Constat]{.underline} &rarr; L'affichage des allumettes n'est pas exactement comme demandé; L'IA n'a pas correctement généré la stratégie `distrait`, et a surtout inversé le gagnant/perdant. De plus, le code en lui-même montre des lacunes avec beaucoup de structures de contrôle imbriquées et une mauvaise exploitation de la polyvalence de Python. On remarque clairement que cette manière de se servir de l'IA est terriblement inefficace; cette dernière fait des erreurs de compréhension et doit compléter des pans importants de la consigne qui ont été omis dans le contexte. Pour autant, on peut voir la puissance de l'IA pour générer du code qui fonctionne, même si ce dernier ne remplit pas les contraintes du sujet. On verra aussi plus tard que certaines erreurs que fait ChatGPT (Copilot moins) se poursuivent dans les tests suivants malgré un meilleur prompting.
+  - **[Création de contenu](https://github.com/YanRabe/LLMsForEducation/blob/main/allumettes/docs/prompts.md#Cr%C3%A9ation-de-contenu)**:
+    - [Constat]{.underline} &rarr; Les deux IA utilisées ont généré une structure de départ plutôt bonne et facilement complétable/compréhensible par l'humain derrière, similaire à un raffinage. Pour autant, Copilot avec Claude Sonnet continue de sur-générer le code et en fait plus que nécessaire. Cela s'avèrerait utile pour la co-création nonobstant.
+  - **[Tentative de co-création](https://github.com/YanRabe/LLMsForEducation/blob/main/allumettes/docs/prompts.md#co-cr%C3%A9ation)** 
+    - [Constat]{.underline} &rarr; Le constat fait est que la co-création est possible avec les LLMs sur ce genre de sujets simples, avec un code produit de qualité, respectant les contraintes et attentes du sujet. Cependant, cela demande à l'utilisateur de savoir interagir intelligemment avec l'IA: Il doit savoir prompter efficacement avec du role prompting, fournir un contexte détaillé avec les attentes et contraintes exactes du cahier des charges, et être capable de corriger les erreurs de l'IA, ou de rebondir sur ses propositions pour avancer de son côte. Cela implique donc que l'utilisateur ait au moins les bases du langage de programmation utilisé, et surtout une compréhension précise du sujet. Il doit pouvoir communiquer efficacement ce qu'il attend de l'IA, et doit pouvoir interagir avec l'IA comme un assistant à qui il montre ses avancées et demande une suggestion ou une correction. Dans le cas du jeu des allumettes, l'IA-- en particulier ChatGPT-- a beau avoir produit un code respectable, les biais d'apprentissage produisent des erreurs de compréhension de consigne, et les lacunes en bonnes pratiques de programmation rendent la correction obligatoire. Aussi, il semblerait aussi que Github Copilot (ou Claude Sonnet par extension) soit plus efficace pour la co-création que ChatGPT si on s'inspire des résultats précédents, malgré sa tendance à en faire trop et à donc laisser moins de marge de réflexion personnelle à l'utilisateur.
 
 ### Conclusion - Jeu des allumettes
 
@@ -114,14 +201,111 @@ Ainsi, on peut observer l'utilité de l'IA dans l'apprentissage et l'application
 
 Pour plus de détails, voir [ici](https://github.com/YanRabe/LLMsForEducation/blob/main/pdfs/IDM/resume_IDM.pdf).
 
-
 ### Zones de test
 
 En tant qu'élève peu expérimenté en IDM et dont mes connaissances se limitent à de l'apprentissage autonome, j'ai utilisé l'IA pour:
 
-- **Expliquer les graphes de marquage** &rarr; Elle a servi à m'expliquer les graphes de marquage du cas d'interblocage sur Tina. Elle a su très bien expliquer tous les éléments pour quelqu'un comme moi qui s'y connaît peu: Elle détaille les états, comprend correctement les transitions et explique pertinemment d'où vient l'interblocage. Cette utilisation pourrait être utile pour comprendre un concept du cours et la syntaxe de modélisation associée. Cependant, l'IA a clairement mâché le travail pour moi, et il m'est difficile de dire si j'aurais pu comprendre le graphe sans son aide. De même, le manque de réflexion de mon côté interroge sur la permanence des informations tout juste acquises dans ma mémoire (sans l'effort personnel, compliqué de mémoriser). Il est donc difficile de dire si l'IA est utile pour apprendre ou si elle est contre-productive dans ce cas.
-- **Apprendre la syntaxe OCL et comprendre le métamodèle de SimplePDL en OCL** &rarr; J'ai utilisé l'IA pour m'aider à comprendre la syntaxe OCL et le métamodèle de SimplePDL. Elle a pu m'expliquer les concepts de manière claire et concise, et la réponse est clairement réutilisable pour réviser et renforcer ma compréhension de la syntaxe OCL. Cependant, la difficulté de l'IA à comprendre certains éléments du métamodèle montre qu'elle n'est pas infaillible et qu'il est donc nécessaire de comprendre le sujet modélisé. Ainsi, c'est définitivement une bonne manière de réviser la syntaxe OCL, mais il est impossible d'apprendre avec l'IA seule et sans avoir au préalable une compréhension du sujet.
-- **Écrire des contraintes SimplePDL en OCL** &rarr; J'ai demandé à l'IA de m'aider à ajouter certaines contraintes au métamodèle de SimplePDL. En donnant le fichier pour contexte, il est capable de proposer des contraintes cohérentes avec le métamodèle. L'IA comprend bien la logique des dépendances entre activités et peut suggérer des invariants pertinents, bien qu'il faille parfois corriger la syntaxe OCL spécifique ou la signification de certains contextes. Cela montre que l'IA peut être utile pour écrire du code OCL, mais qu'elle nécessite une compréhension préalable du métamodèle et de la syntaxe OCL pour être efficace. En somme la conclusion est la même: l'IA semble être un bon outil pour aider à écrire des métamodèles mais nécessite d'être capable de comprendre intégralement le sujet sans quoi elle fait le gros du travail, incluant des erreurs sur le chemin.
+- **[Expliquer les graphes de marquage](https://github.com/YanRabe/LLMsForEducation/blob/main/IDM/docs/resume_IDM.md#tp1)** :
+  - [Fichier *Tina* à expliquer]{.underline}:
+    ```bash
+    Tina version 2.8.0 -- 03/14/06 -- LAAS/CNRS
+
+    mode -R
+
+    INPUT NET ------------------------------------------------------- 
+
+    parsed net noname
+
+    ## Description textuelle du reseau (voir FAQ) 
+
+    5 places, 4 transitions
+
+    net noname
+    tr OqpA A idle -> WaitB 
+    tr OqpAB B WaitB -> A B idle 
+    tr OqpB B idle -> WaitA 
+    tr OqpBA A WaitA -> A B idle 
+    pl A (1)
+    pl B (1)
+    pl idle (2)
+
+    0.000s
+
+
+    REACHABILITY ANALYSIS ------------------------------------------- 
+
+    bounded 
+    ## Reseau Borne 
+
+    4 marking(s), 6 transition(s)
+    ## Le graphe des marquages est constitué
+    ## de 4 états (marquages) et 6 transitions
+
+    MARKINGS:
+
+    ## Liste des marquages
+
+    0 : A B idle*2
+    1 : B WaitB idle
+    2 : WaitA WaitB
+    3 : A WaitA idle
+
+    ## Liste des transitions
+
+    REACHABILITY GRAPH:
+
+    0 -> OqpA/1, OqpB/3
+    1 -> OqpAB/0, OqpB/2
+    2 -> 
+    3 -> OqpA/2, OqpBA/0
+
+    0.000s
+
+    LIVENESS ANALYSIS ----------------------------------------------- 
+
+    not live
+    ## reseau non vivant
+
+    1 dead marking(s), 1 live marking(s)
+    0 dead transition(s), 0 live transition(s)
+
+    dead marking(s): 2
+    ## un marquage bloquant 
+
+    ## Analyse des composantes fortements connexes 
+    ## A voir si on a du temps.
+
+    STRONG CONNECTED COMPONENTS:
+
+    1 : 0 1 3
+    0 : 2
+
+    SCC GRAPH:
+
+    1 -> OqpA/1, OqpB/1, OqpAB/1, OqpB/0, OqpA/0, OqpBA/1
+    0 -> 
+
+    0.010s
+
+    ANALYSIS COMPLETED ---------------------------------------------- 
+    ```
+  - [Explication de l'IA]{.underline}:
+    ```{.include shift-heading-level-by=2}
+    IDM/copilot_chat/interblocages.md
+    ```
+  - [Constat]{.underline} &rarr; Elle a servi à m'expliquer les graphes de marquage du cas d'interblocage sur Tina. Elle a su très bien expliquer tous les éléments pour quelqu'un comme moi qui s'y connaît peu: Elle détaille les états, comprend correctement les transitions et explique pertinemment d'où vient l'interblocage. Cette utilisation pourrait être utile pour comprendre un concept du cours et la syntaxe de modélisation associée. Cependant, l'IA a clairement mâché le travail pour moi, et il m'est difficile de dire si j'aurais pu comprendre le graphe sans son aide. De même, le manque de réflexion de mon côté interroge sur la permanence des informations tout juste acquises dans ma mémoire (sans l'effort personnel, compliqué de mémoriser). Il est donc difficile de dire si l'IA est utile pour apprendre ou si elle est contre-productive dans ce cas.
+- [**Apprendre la syntaxe OCL et comprendre le métamodèle de SimplePDL en OCL**](https://github.com/YanRabe/LLMsForEducation/blob/main/IDM/docs/resume_IDM.md#explication-ocl):
+  - [Explication de l'IA]{.underline}:
+    ```{.include shift-heading-level-by=2}
+    IDM/copilot_chat/ocl_process.md
+    ```
+  - [Constat]{.underline} &rarr; J'ai utilisé l'IA pour m'aider à comprendre la syntaxe OCL et le métamodèle de SimplePDL. Elle a pu m'expliquer les concepts de manière claire et concise, et la réponse est clairement réutilisable pour réviser et renforcer ma compréhension de la syntaxe OCL. Cependant, la difficulté de l'IA à comprendre certains éléments du métamodèle montre qu'elle n'est pas infaillible et qu'il est donc nécessaire de comprendre le sujet modélisé. Ainsi, c'est définitivement une bonne manière de réviser la syntaxe OCL, mais il est impossible d'apprendre avec l'IA seule et sans avoir au préalable une compréhension du sujet.
+- [**Écrire des contraintes SimplePDL en OCL**](https://github.com/YanRabe/LLMsForEducation/blob/main/IDM/docs/resume_IDM.md#%C3%A9criture-ocl):
+  - [Réponse de l'IA]{.underline}:
+    ```{.include shift-heading-level-by=2}
+    IDM/copilot_chat/ocl_writing.md
+    ```
+  - [Constat]{.underline} &rarr; J'ai demandé à l'IA de m'aider à ajouter certaines contraintes au métamodèle de SimplePDL. En donnant le fichier pour contexte, il est capable de proposer des contraintes cohérentes avec le métamodèle. L'IA comprend bien la logique des dépendances entre activités et peut suggérer des invariants pertinents, bien qu'il faille parfois corriger la syntaxe OCL spécifique ou la signification de certains contextes. Cela montre que l'IA peut être utile pour écrire du code OCL, mais qu'elle nécessite une compréhension préalable du métamodèle et de la syntaxe OCL pour être efficace. En somme la conclusion est la même: l'IA semble être un bon outil pour aider à écrire des métamodèles mais nécessite d'être capable de comprendre intégralement le sujet sans quoi elle fait le gros du travail, incluant des erreurs sur le chemin.
 
 
 ### Résultats et conclusion - IDM
